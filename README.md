@@ -111,27 +111,27 @@ To establish a secure, multi-tenant administrative baseline adhering to AWS secu
 
 ### Phase 1: MFA-Gated Root Authentication & IAM Baseline
 
-Initiated the setup by navigating to the AWS Sign-In console (`signin.aws.amazon.com`)[cite: 119]. Selected the **Root user** radio button and entered the account owner email address[cite: 119].
+Initiated the setup by navigating to the AWS Sign-In console (`signin.aws.amazon.com`)[cite: 119]. Selected the **Root user** radio button and entered the account owner email address.
 <br>
 
-![AWS Root Sign-In](images/01-login-as-aws-root.jpg)
+![AWS Root Sign-In](images/01-login-as-aws-root.png)
 
-The AWS login engine intercepted the session with the **Additional verification required** challenge, prompting for the dynamic 6-digit Time-Based One-Time Password (TOTP) from the previously enrolled authenticator device[cite: 120].
+The AWS login engine intercepted the session with the **Additional verification required** challenge, prompting for the dynamic 6-digit Time-Based One-Time Password (TOTP) from the previously enrolled authenticator device.
 <br>
 
-![Root MFA Intercept](images/02-insert-mfa-code.jpg)
+![Root MFA Intercept](images/02-insert-mfa-code.png)
 
-Entered the TOTP code to establish an authenticated root administrative session and landed on the AWS **Console Home**[cite: 120, 121].
+Entered the TOTP code to establish an authenticated root administrative session and landed on the AWS **Console Home**.
 <br>
 
 ![Root Console Home](images/03-logged-in-successfully.png)
 
-Accessed the unified search bar and queried for **IAM** to open the Identity and Access Management service[cite: 122].
+Accessed the unified search bar and queried for **IAM** to open the Identity and Access Management service.
 <br>
 
 ![Search IAM Service](images/04-search-for-iam.png)
 
-Opened the **IAM Dashboard** and verified initial environment metrics: **0** active security recommendations, green checkmark for root MFA, and an initial baseline of **0 User groups** and **0 Users**[cite: 123].
+Opened the **IAM Dashboard** and verified initial environment metrics: **0** active security recommendations, green checkmark for root MFA, and an initial baseline of **0 User groups** and **0 Users**.
 <br>
 
 ![IAM Baseline Overview](images/05-iam-dashboard-opened.png)
@@ -140,37 +140,37 @@ Opened the **IAM Dashboard** and verified initial environment metrics: **0** act
 
 ### Phase 2: Administrative User Group Provisioning & Policy Attachment
 
-In accordance with AWS best practices, permissions should be assigned to groups rather than directly to individual users. Selected **Access Management -> IAM user groups** in the left navigation pane and clicked **Create group**[cite: 124].
+In accordance with AWS best practices, permissions should be assigned to groups rather than directly to individual users. Selected **Access Management -> IAM user groups** in the left navigation pane and clicked **Create group**.
 <br>
 
 ![IAM User Groups View](images/06-open-iam-user-group.png)
 
-Initiated the group provisioning modal and entered `Admin` into the **User group name** input field[cite: 125, 130].
+Initiated the group provisioning modal and entered `Admin` into the **User group name** input field.
 <br>
 
 ![Define Group Name](images/07-create-admin-group.png)
 
-Scrolled down to the **Attach permissions policies** catalog (displaying 1,223 AWS-managed policies) to locate administrative access controls[cite: 126].
+Scrolled down to the **Attach permissions policies** catalog (displaying 1,223 AWS-managed policies) to locate administrative access controls.
 <br>
 
 ![Policy Catalog Search](images/08-attach-permissions-policies.png)
 
-Filtered through the policy list to locate administrative permissions[cite: 127].
+Filtered through the policy list to locate administrative permissions.
 <br>
 
 ![Select Administrative Policies](images/09-select-admin-rules-policies.png)
 
-Selected the primary AWS-managed job function policy: **`AdministratorAccess`**[cite: 118]. This policy provides full access to AWS services and resources across the account[cite: 118].
+Selected the primary AWS-managed job function policy: **`AdministratorAccess`**. This policy provides full access to AWS services and resources across the account.
 <br>
 
 ![AdministratorAccess Selected](images/10-rules-policies-selected.png)
 
-Committed the group creation by clicking **Create user group**[cite: 129].
+Committed the group creation by clicking **Create user group**.
 <br>
 
 ![Click Create Group](images/11-click-create-group.png)
 
-The console returned a confirmation banner (*"Admin user group created."*), confirming the `Admin` group was instantiated with permissions defined[cite: 130].
+The console returned a confirmation banner (*"Admin user group created."*), confirming the `Admin` group was instantiated with permissions defined.
 <br>
 
 ![Admin Group Instantiated](images/12-admin-group-created.png)
@@ -179,20 +179,20 @@ The console returned a confirmation banner (*"Admin user group created."*), conf
 
 ### Phase 3: Delegated Administrator Account Provisioning
 
-With the permissions container established, navigated to **Access Management -> IAM users** and clicked **Create user** to provision the delegated administrator[cite: 131].
+With the permissions container established, navigated to **Access Management -> IAM users** and clicked **Create user** to provision the delegated administrator.
 <br>
 
 ![IAM Users Management](images/13-click-iam-user.png)
 
-Entered Step 1 (*Specify user details*)[cite: 132]:
-* **User name:** Defined the account identifier as `admin`[cite: 132].
-* **Console Access:** Enabled **Provide user access to the AWS Management Console**[cite: 132].
-* **Credential Type:** Selected **Autogenerated password** to ensure cryptographic entropy[cite: 132].
+Entered Step 1 (*Specify user details*):
+* **User name:** Defined the account identifier as `admin`.
+* **Console Access:** Enabled **Provide user access to the AWS Management Console**.
+* **Credential Type:** Selected **Autogenerated password** to ensure cryptographic entropy.
 <br>
 
 ![Specify Admin Details](images/14-create-admin-user.png)
 
-Enforced identity hygiene by checking **Users must create a new password at next sign-in (Recommended)**, which automatically couples the `IAMUserChangePassword` policy to the user[cite: 133]. Clicked **Next**[cite: 133].
+Enforced identity hygiene by checking **Users must create a new password at next sign-in (Recommended)**, which automatically couples the `IAMUserChangePassword` policy to the user[cite: 133]. Clicked **Next**.
 <br>
 
 ![Configure Password Rotation](images/15-config-username-pass-etc.png)
@@ -201,37 +201,37 @@ Enforced identity hygiene by checking **Users must create a new password at next
 
 ### Phase 4: Group Membership Assignment & Creation Audit
 
-In Step 2 (*Set permissions*), opted for **Add user to group** to implement group-based access inheritance[cite: 134].
+In Step 2 (*Set permissions*), opted for **Add user to group** to implement group-based access inheritance.
 <br>
 
 ![Select Group Membership Option](images/16-add-admin-user-to-admin-group.png)
 
-Selected the checkbox for the newly created **Admin** user group[cite: 135]. Through this association, the user inherits the `AdministratorAccess` policy without requiring inline user policies[cite: 135]. Clicked **Next**[cite: 135].
+Selected the checkbox for the newly created **Admin** user group. Through this association, the user inherits the `AdministratorAccess` policy without requiring inline user policies. Clicked **Next**.
 <br>
 
 ![Select Admin Group](images/17-select-group-name.png)
 
-Audited Step 3 (*Review and create*)[cite: 136]:
-* **User details:** User name `admin`, autogenerated password, forced password reset enabled[cite: 136].
-* **Permissions summary:** Group membership set to `Admin` with attached policy `IAMUserChangePassword`[cite: 136].
+Audited Step 3 (*Review and create*):
+* **User details:** User name `admin`, autogenerated password, forced password reset enabled.
+* **Permissions summary:** Group membership set to `Admin` with attached policy `IAMUserChangePassword`.
 <br>
 
 ![Review User Configuration](images/18-review-user-config.png)
 
-Bypassed optional tag creation and clicked **Create user** to finalize account provisioning[cite: 137].
+Bypassed optional tag creation and clicked **Create user** to finalize account provisioning.
 <br>
 
 ![Commit User Creation](images/19-create-user.png)
 
-Received the **User created successfully** confirmation banner[cite: 128].
+Received the **User created successfully** confirmation banner.
 <br>
 
 ![User Created Banner](images/20-user-created-successfully.png)
 
-In Step 4 (*Retrieve password*), captured the critical account onboarding artifacts[cite: 139]:
-* **Console sign-in URL:** Account-specific sign-in endpoint containing the AWS Account ID[cite: 139].
-* **Credentials:** Username `admin` and the temporary autogenerated console password[cite: 139].
-* Clicked **Return to users list** and executed a full logout from the root account[cite: 139].
+In Step 4 (*Retrieve password*), captured the critical account onboarding artifacts:
+* **Console sign-in URL:** Account-specific sign-in endpoint containing the AWS Account ID.
+* **Credentials:** Username `admin` and the temporary autogenerated console password.
+* Clicked **Return to users list** and executed a full logout from the root account.
 <br>
 
 ![Retrieve Initial Credentials](images/21-user-details-retrive-password.png)
@@ -240,27 +240,27 @@ In Step 4 (*Retrieve password*), captured the critical account onboarding artifa
 
 ### Phase 5: First-Time Login & Enforced Password Rotation
 
-Navigated to the dedicated account sign-in URL[cite: 139, 140]. The **IAM user sign in** portal automatically populated the 12-digit Account ID[cite: 140]. Entered `admin` and the temporary autogenerated password, then clicked **Sign in**[cite: 140].
+Navigated to the dedicated account sign-in URL. The **IAM user sign in** portal automatically populated the 12-digit Account ID. Entered `admin` and the temporary autogenerated password, then clicked **Sign in**.
 <br>
 
-![IAM User Sign-In](images/22-try-login-iam-admin-user.jpg)
+![IAM User Sign-In](images/22-try-login-iam-admin-user.png)
 
-The console immediately enforced the password rotation boundary with a **Password reset** screen[cite: 141]. Entered the temporary password into the **Old Password** field and supplied a strong, compliant master secret into the **New Password** fields[cite: 141]. Clicked **Confirm Password Change**[cite: 141].
+The console immediately enforced the password rotation boundary with a **Password reset** screen. Entered the temporary password into the **Old Password** field and supplied a strong, compliant master secret into the **New Password** fields. Clicked **Confirm Password Change**.
 <br>
 
 ![Mandatory Password Reset](images/23-change-default-password.png)
 
-The console confirmed the update with a **Password reset successful** confirmation banner[cite: 142]. Clicked **Continue to sign in**[cite: 142].
+The console confirmed the update with a **Password reset successful** confirmation banner. Clicked **Continue to sign in**.
 <br>
 
 ![Password Reset Successful](images/24-password-changed.png)
 
-Re-authenticated through the IAM user portal using the newly established administrative password[cite: 143].
+Re-authenticated through the IAM user portal using the newly established administrative password.
 <br>
 
-![Re-authenticate IAM Admin](images/25-login-again-admin-user.jpg)
+![Re-authenticate IAM Admin](images/25-login-again-admin-user.png)
 
-Successfully authenticated into **Console Home** as `admin`, confirmed by the user identity badge in the global navigation bar[cite: 144].
+Successfully authenticated into **Console Home** as `admin`, confirmed by the user identity badge in the global navigation bar.
 <br>
 
 ![Delegated Admin Console Home](images/26-loggedin-with-admin-iam-user.png)
@@ -269,39 +269,39 @@ Successfully authenticated into **Console Home** as `admin`, confirmed by the us
 
 ### Phase 6: Delegated Admin Session Verification & MFA Provisioning
 
-To complete the defense-in-depth posture, the delegated administrator account must be protected by its own independent secondary authentication factor. Searched for **IAM** within the delegated administrative console[cite: 145].
+To complete the defense-in-depth posture, the delegated administrator account must be protected by its own independent secondary authentication factor. Searched for **IAM** within the delegated administrative console.
 <br>
 
 ![Search IAM as Admin](images/27-search-for-iam.png)
 
-The IAM Dashboard flagged a new operational recommendation[cite: 146]:
-* **Recommendation:** *"Add MFA for yourself - Add multi-factor authentication (MFA) for yourself to improve security for this account."*[cite: 146]
-* Clicked **Add MFA** to launch the device assignment workflow[cite: 146].
+The IAM Dashboard flagged a new operational recommendation:
+* **Recommendation:** *"Add MFA for yourself - Add multi-factor authentication (MFA) for yourself to improve security for this account."*
+* Clicked **Add MFA** to launch the device assignment workflow.
 <br>
 
 ![Self-Service MFA Recommendation](images/28-iam-dashboard-add-mfa.png)
 
-Entered the **Assign MFA device** wizard and defined the unique identifier string in the **MFA device name** field[cite: 147].
+Entered the **Assign MFA device** wizard and defined the unique identifier string in the **MFA device name** field.
 <br>
 
 ![Enter Device Name](images/29-add-mfa-to-admin-user.png)
 
-Selected the **Authenticator app** radio option and clicked **Next**[cite: 138].
+Selected the **Authenticator app** radio option and clicked **Next**.
 <br>
 
 ![Select Authenticator App](images/30-select-authenticator-app.png)
 
-Reached Step 2 (*Set up device*) and selected **Show QR code** to reveal the secret seed[cite: 149].
+Reached Step 2 (*Set up device*) and selected **Show QR code** to reveal the secret seed.
 <br>
 
 ![Display MFA QR Code](images/31-set-up-device-show-qr.png)
 
-Scanned the QR code using Google Authenticator on the mobile device[cite: 149]. Captured and entered two consecutive TOTP codes (`590384` and `855445`) generated 30 seconds apart, then clicked **Add MFA**[cite: 150].
+Scanned the QR code using Google Authenticator on the mobile device. Captured and entered two consecutive TOTP codes (`590384` and `855445`) generated 30 seconds apart, then clicked **Add MFA**.
 <br>
 
 ![Enter Two Consecutive Codes](images/32-enter-two-mfa-codes.png)
 
-Received confirmation via the green notification banner: *"MFA device assigned"*[cite: 151]. The security credentials table now reflected an active Virtual MFA device assigned to user `admin`[cite: 151].
+Received confirmation via the green notification banner: *"MFA device assigned"*. The security credentials table now reflected an active Virtual MFA device assigned to user `admin`.
 <br>
 
 ![MFA Device Assigned Confirmation](images/33-mfa-device-assigned.png)
@@ -310,19 +310,19 @@ Received confirmation via the green notification banner: *"MFA device assigned"*
 
 ### Phase 7: End-to-End Delegated MFA Authentication Verification
 
-To validate that two-factor enforcement was strictly gating delegated access, opened the global user menu and clicked **Sign out**[cite: 152].
+To validate that two-factor enforcement was strictly gating delegated access, opened the global user menu and clicked **Sign out**.
 <br>
 
 ![Sign Out Administrative Session](images/34-sign-out-admin.png)
 
-Navigated back to the account-specific sign-in URL and entered the `admin` username and password[cite: 140, 143]. 
+Navigated back to the account-specific sign-in URL and entered the `admin` username and password. 
 
-Upon credential validation, AWS intercepted the session with the mandatory secondary challenge: **Additional verification required**[cite: 153]. Retrieved the active 6-digit TOTP code (`441889`) from Google Authenticator, input the value, and clicked **Sign in**[cite: 153].
+Upon credential validation, AWS intercepted the session with the mandatory secondary challenge: **Additional verification required**. Retrieved the active 6-digit TOTP code (`441889`) from Google Authenticator, input the value, and clicked **Sign in**.
 <br>
 
 ![Delegated MFA Login Challenge](images/35-relogin-mfa-challenge.png)
 
-The console accepted the cryptographic proof and authorized access to **Console Home**, confirming end-to-end delegated administrative security[cite: 148].
+The console accepted the cryptographic proof and authorized access to **Console Home**, confirming end-to-end delegated administrative security.
 <br>
 
 ![Authenticated Admin Console Home](images/36-console-home-verified.png)
@@ -334,9 +334,9 @@ The console accepted the cryptographic proof and authorized access to **Console 
 Implementing delegated administration with group-level policies and enforced MFA achieves critical security milestones:
 
 * **Elimination of Root Exposure (CIS Control 1.7):** Daily administrative tasks are fully decoupled from the root account, allowing the root credentials to be locked in a secure vault and reserved exclusively for account-level emergency recovery.
-* **Privilege Delegation via Groups (Least Privilege):** Rather than attaching inline policies to individual users, attaching `AdministratorAccess` to the `Admin` group enforces clean role-based access control (RBAC)[cite: 118, 134]. If an administrator departs, revoking group membership instantly terminates administrative rights.
-* **Credential Lifecycle Hygiene:** Requiring initial password changes prevents administrator accounts from operating with static, known, or emailed onboarding passwords[cite: 133, 141].
-* **Two-Factor Assurance Across All Administrative Tiers:** Enforcing virtual TOTP MFA on both the root identity and delegated administrators ensures that compromised credentials alone cannot grant console access at any privilege tier[cite: 120, 153].
+* **Privilege Delegation via Groups (Least Privilege):** Rather than attaching inline policies to individual users, attaching `AdministratorAccess` to the `Admin` group enforces clean role-based access control (RBAC). If an administrator departs, revoking group membership instantly terminates administrative rights.
+* **Credential Lifecycle Hygiene:** Requiring initial password changes prevents administrator accounts from operating with static, known, or emailed onboarding passwords.
+* **Two-Factor Assurance Across All Administrative Tiers:** Enforcing virtual TOTP MFA on both the root identity and delegated administrators ensures that compromised credentials alone cannot grant console access at any privilege tier.
 
 ---
 
