@@ -59,11 +59,11 @@ To establish a secure, multi-tenant administrative baseline adhering to AWS secu
 
                       [ AWS Root Account ]
                                |
-                  (1) Authenticates with MFA[cite: 119, 120]
+                  (1) Authenticates with MFA
                                |
                                v
                      +-------------------+
-                     |  AWS IAM Console  |[cite: 122, 123]
+                     |  AWS IAM Console  |
                      +---------+---------+
                                |
            +-------------------+-------------------+
@@ -71,14 +71,14 @@ To establish a secure, multi-tenant administrative baseline adhering to AWS secu
            v                                       v
 +-----------------------+              +-----------------------+
 |    IAM User Group     |              |       IAM User        |
-|        "Admin"        |[cite: 130]   |        "admin"        |[cite: 132]
+|        "Admin"        |              |        "admin"        |
 +-----------+-----------+              +-----------+-----------+
             |                                      |
-            |-- Attaches Policy:                   |-- Enforces Password Reset[cite: 133]
-            |   AdministratorAccess[cite: 118]     |   at First Sign-In
+            |-- Attaches Policy:                   |-- Enforces Password Reset
+            |   AdministratorAccess                |   at First Sign-In
             |                                      |
             +<========= (4) User Added ============+
-            |               to Group[cite: 134, 135]
+            |               to Group
             v
 +--------------------------------------------------+
 |           Inherited Execution Rights             |
@@ -92,16 +92,16 @@ To establish a secure, multi-tenant administrative baseline adhering to AWS secu
                             v
              [ Delegated Admin Sign-In ]
                             |
-                            +---> (6) Authenticates via Account-Specific URL[cite: 139, 140]
+                            +---> (6) Authenticates via Account-Specific URL
                             |
-                            +---> (7) Performs Enforced Password Reset[cite: 141, 142]
+                            +---> (7) Performs Enforced Password Reset
                             |
-                            +---> (8) Configures Virtual TOTP MFA[cite: 146, 149, 150]
+                            +---> (8) Configures Virtual TOTP MFA
                             |
                             v
              [ Hardened Delegated Admin Session ]
-               - Full Admin Operations Enabled[cite: 144, 148]
-               - Protected by Password + Virtual TOTP[cite: 151, 153]
+               - Full Admin Operations Enabled
+               - Protected by Password + Virtual TOTP
                - Zero Daily Root Dependency
 ```
 
@@ -294,12 +294,12 @@ Selected the **Authenticator app** radio option and clicked **Next**.
 Reached Step 2 (*Set up device*) and selected **Show QR code** to reveal the secret seed.
 <br>
 
-![Display MFA QR Code](images/31-set-up-device-show-qr.png)
+![Display MFA QR Code](images/31-show-qr.png)
 
 Scanned the QR code using Google Authenticator on the mobile device. Captured and entered two consecutive TOTP codes (`590384` and `855445`) generated 30 seconds apart, then clicked **Add MFA**.
 <br>
 
-![Enter Two Consecutive Codes](images/32-enter-two-mfa-codes.png)
+![Enter Two Consecutive Codes](images/32-scan-qr-add-totp.png)
 
 Received confirmation via the green notification banner: *"MFA device assigned"*. The security credentials table now reflected an active Virtual MFA device assigned to user `admin`.
 <br>
