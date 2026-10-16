@@ -313,19 +313,19 @@ Received confirmation via the green notification banner: *"MFA device assigned"*
 To validate that two-factor enforcement was strictly gating delegated access, opened the global user menu and clicked **Sign out**.
 <br>
 
-![Sign Out Administrative Session](images/34-sign-out-admin.png)
+![Sign Out Administrative Session](images/34-logout-of-admin-user.png)
 
 Navigated back to the account-specific sign-in URL and entered the `admin` username and password. 
 
 Upon credential validation, AWS intercepted the session with the mandatory secondary challenge: **Additional verification required**. Retrieved the active 6-digit TOTP code (`441889`) from Google Authenticator, input the value, and clicked **Sign in**.
 <br>
 
-![Delegated MFA Login Challenge](images/35-relogin-mfa-challenge.png)
+![Delegated MFA Login Challenge](images/35-try-login-using-admin-mfa.png)
 
 The console accepted the cryptographic proof and authorized access to **Console Home**, confirming end-to-end delegated administrative security.
 <br>
 
-![Authenticated Admin Console Home](images/36-console-home-verified.png)
+![Authenticated Admin Console Home](images/36-admin-mfa-loggedin-successfully.png)
 
 ---
 
