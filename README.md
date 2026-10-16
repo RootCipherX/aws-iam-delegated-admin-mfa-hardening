@@ -192,7 +192,7 @@ Entered Step 1 (*Specify user details*):
 
 ![Specify Admin Details](images/14-create-admin-user.png)
 
-Enforced identity hygiene by checking **Users must create a new password at next sign-in (Recommended)**, which automatically couples the `IAMUserChangePassword` policy to the user[cite: 133]. Clicked **Next**.
+Enforced identity hygiene by checking **Users must create a new password at next sign-in (Recommended)**, which automatically couples the `IAMUserChangePassword` policy to the user. Clicked **Next**.
 <br>
 
 ![Configure Password Rotation](images/15-config-username-pass-etc.png)
