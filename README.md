@@ -36,14 +36,14 @@ This laboratory documents the complete deployment of an enterprise IAM identity 
 To establish a secure, multi-tenant administrative baseline adhering to AWS security best practices and CIS AWS Foundations Benchmark Control 1.7. The configuration eliminates direct root console usage for routine operations, implements group-based privilege inheritance, and ensures multi-factor identity verification across all administrative sessions.
 
 ## System Specifications & Security Baseline
-* **Cloud Infrastructure:** Amazon Web Services (AWS Global Control Plane)[cite: 118, 144]
-* **Identity Management:** AWS Identity and Access Management (IAM)[cite: 122, 123]
-* **Target Administrative Group:** `Admin` (Group ARN)[cite: 130, 136]
+* **Cloud Infrastructure:** Amazon Web Services (AWS Global Control Plane)
+* **Identity Management:** AWS Identity and Access Management (IAM)
+* **Target Administrative Group:** `Admin` (Group ARN)
 * **Attached Managed Policies:**
-  * `AdministratorAccess` (AWS Managed - Job Function Policy)[cite: 118, 135]
-  * `IAMUserChangePassword` (AWS Managed Policy for self-service rotation)[cite: 133, 136]
-* **Target IAM User:** `admin`[cite: 132, 136]
-* **Secondary Factor:** Virtual TOTP Token (RFC 6238 via Google Authenticator)[cite: 138, 149, 150]
+  * `AdministratorAccess` (AWS Managed - Job Function Policy)
+  * `IAMUserChangePassword` (AWS Managed Policy for self-service rotation)
+* **Target IAM User:** `admin`
+* **Secondary Factor:** Virtual TOTP Token (RFC 6238 via Google Authenticator)
 * **Compliance Standards:**
   * CIS AWS Foundations Benchmark v3.0 (Control 1.7 - Eliminate root user usage)
   * AWS Well-Architected Framework: Security Pillar (SEC 02: Protect identities)
@@ -111,7 +111,7 @@ To establish a secure, multi-tenant administrative baseline adhering to AWS secu
 
 ### Phase 1: MFA-Gated Root Authentication & IAM Baseline
 
-Initiated the setup by navigating to the AWS Sign-In console (`signin.aws.amazon.com`)[cite: 119]. Selected the **Root user** radio button and entered the account owner email address.
+Initiated the setup by navigating to the AWS Sign-In console (`signin.aws.amazon.com`). Selected the **Root user** radio button and entered the account owner email address.
 <br>
 
 ![AWS Root Sign-In](images/01-login-as-aws-root.png)
